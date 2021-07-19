@@ -19,3 +19,8 @@ def math(request,a,b):
     # return render(request, 'math.html',{'plus':plus,'minus':minus})
     return render(request,'math.html',locals())
 
+def welcome(request):
+    if 'user_name' in request.GET and request.GET['user_name'] != '':
+        return HttpResponse('welcome!~'+request.GET['user_name'])
+    else:
+        return render(request,'welcome.html',locals())

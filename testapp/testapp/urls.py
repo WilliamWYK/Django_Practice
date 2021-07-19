@@ -16,11 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path
 from . import views
-from restaurants.views import menu
+from restaurants.views import menu, list_restaurants
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('hello/<slug:name>/',views.hello),
     re_path(r'^(\d{1,3})/plus/(\d{1,2})/$',views.add),
     path('<int:a>/math/<int:b>/',views.math),
     path('menu/',menu),
+    path('restaurant_list/',list_restaurants),
+    path('welcome/',views.welcome)
 ]

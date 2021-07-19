@@ -1,18 +1,21 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from restaurants.models import Restaurant, Food
 
 # Create your views here.
 def menu(request):
-    food1 = {
-        'name' : '紅燒牛肉麵',
-        'price' : 120,
-        'comment' : 'good',
-        'avalible': True
-    }
-    food2 = {
-        'name' : '清燉牛肉麵',
-        'price' : 150,
-        'comment' : 'nice',
-        'avalible': True
-    }
-    foods = [food1,food2]
-    return render(request,'menu.html',locals())
+    if 'rname' in request.GET and request.GET['rname'] != '':
+        restaurant = Restaurant.objects.get(name=request.GET['rname'])
+        return render(request,'menu.html',locals())
+    else:
+        return HttpResponseRedirect('/restaurant_list/')
+    # path = request.META.items()
+    # path = request.get_full_path()
+    #path = request.path
+    # path = request.is_secure()
+    # path = request.get_host()
+    
+
+def list_restaurants(request):
+    restaurants = Restaurant.objects.all()
+    return render(request,'restaurant_list.html',locals())
