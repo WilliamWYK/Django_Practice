@@ -24,3 +24,10 @@ def welcome(request):
         return HttpResponse('welcome!~'+request.GET['user_name'])
     else:
         return render(request,'welcome.html',locals())
+
+def meta(request):
+    values = request.META.items()
+    html=[]
+    for k,v in values:
+        html.append('<tr><td>{0}</td><td>{1}</td></tr>'.format(k,v))
+    return HttpResponse('<table>{}</table>'.format(html))

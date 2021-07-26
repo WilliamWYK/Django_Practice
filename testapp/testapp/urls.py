@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path
 from . import views
-from restaurants.views import menu, list_restaurants
+from restaurants.views import menu, list_restaurants, comment
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('hello/<slug:name>/',views.hello),
@@ -24,5 +24,7 @@ urlpatterns = [
     path('<int:a>/math/<int:b>/',views.math),
     path('menu/',menu),
     path('restaurant_list/',list_restaurants),
-    path('welcome/',views.welcome)
+    path('welcome/',views.welcome),
+    path('meta/',views.meta),
+    path('comment/',comment)
 ]

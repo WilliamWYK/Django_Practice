@@ -29,16 +29,18 @@
                         <th>名稱</th>
                         <th>電話</th>
                         <th>地址</th>
+                        <th>評價</th>
                     </tr>
                 </thead>
                 {% for r in restaurants %}
                 <tbody>
                 <tr>
                     {% comment %} <td><input type='radio' name='rname' value='{{r.name}}'></td> {% endcomment %}
-                    <td><a href='/menu/?rname={{r.name}}'>imgSelect</td>
+                    <td><a href='/menu/?rname={{r.name}}'>選取</td>
                     <td>{{r.name}}</td>
                     <td>{{r.phone_number}}</td>
                     <td>{{r.address}}</td>
+                    <td><a href='/comment/?rname={{r.name}}'>評論</td>
                 </tr>
                 </tbody>
                 {% endfor %}

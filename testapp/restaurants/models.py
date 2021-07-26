@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.deletion import CASCADE
 
 # Create your models here.
 class Restaurant(models.Model):
@@ -18,5 +19,15 @@ class Food(models.Model):
     def __str__(self):
         return self.name
     class Meta:
-        ordering= ['price']
+        ordering = ['price']
     
+class Comment(models.Model):
+    content = models.CharField(max_length=255)
+    visitor = models.CharField(max_length=255)
+    email = models.EmailField(max_length=255)
+    date_time = models.DateTimeField()
+    restaurant = models.ForeignKey(Restaurant, on_delete=CASCADE)
+    def __str__(self):
+        return self
+    class Meta:
+        ordering = ['-date_time']
