@@ -28,6 +28,6 @@ class Comment(models.Model):
     date_time = models.DateTimeField()
     restaurant = models.ForeignKey(Restaurant, on_delete=CASCADE)
     def __str__(self):
-        return self
+        return self.visitor
     class Meta:
         ordering = ['-date_time']

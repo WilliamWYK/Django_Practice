@@ -72,6 +72,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'testapp.wsgi.application'
 
+LOGIN_REDIRECT_URL= 'home'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -83,6 +84,7 @@ DATABASES = {
     }
 }
 
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers' + '.PickleSerializer'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

@@ -14,17 +14,23 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 from django.urls import path, re_path
 from . import views
-from restaurants.views import menu, list_restaurants, comment
+from restaurants.views import menu, list_restaurants, comment, delete
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('hello/<slug:name>/',views.hello),
     re_path(r'^(\d{1,3})/plus/(\d{1,2})/$',views.add),
     path('<int:a>/math/<int:b>/',views.math),
     path('menu/',menu),
-    path('restaurant_list/',list_restaurants),
+    path('restaurant_list/',list_restaurants,name='restaurant_list'),
     path('welcome/',views.welcome),
     path('meta/',views.meta),
-    path('comment/',comment)
+    path('comment/',comment),
+    path('delete/',delete),
+    path ('use_seesion/',views.use_session),
+    path('accounts/login/',auth_views.LoginView.as_view(),name='login') ,  # Redirect address set at settings
+    path('index/',views.home,name='home'),
+    path('accounts/logout/',views.logout,name='logout'),
 ]
